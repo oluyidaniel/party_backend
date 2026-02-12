@@ -1,0 +1,24 @@
+# Ignore build artifacts and dependencies
+node_modules/
+build/
+dist/
+
+# Ignore logs and temp files
+*.log
+tmp/
+*.tmp
+
+# Ignore OS-specific files
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Ignore sensitive files
+.env  # Environment variables (e.g., API keys)
+secrets.json
+
+# Ignore editor/IDE files
+.vscode/
+.idea/
+
+# But track this specific file even if it matches a pattern
+!.gitignore
