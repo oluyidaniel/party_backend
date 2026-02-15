@@ -18,7 +18,7 @@ secrets.json
 
 # Ignore editor/IDE files
 .vscode/
-.idea/
+.idea/ 
 
 # But track this specific file even if it matches a pattern
 !.gitignore
