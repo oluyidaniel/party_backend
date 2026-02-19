@@ -8,6 +8,7 @@ const priceSchema = new mongoose.Schema({
 
 const eventSchema = new mongoose.Schema({
   eventId: { type: String, unique: true },
+
   card: {
     title: String,
     location: String,
@@ -16,6 +17,7 @@ const eventSchema = new mongoose.Schema({
     image: String,
     peopleGoing: { type: Number, default: 0 }
   },
+
   details: {
     bannerImage: String,
     description: String,
@@ -23,6 +25,7 @@ const eventSchema = new mongoose.Schema({
     prices: [priceSchema],
     cta: { label: String, action: String }
   }
+
 }, { timestamps: true });
 
 export default mongoose.model("Event", eventSchema);

@@ -7,25 +7,28 @@ export const createEvent = async (req, res) => {
     const eventId = new Date().getTime().toString() + Math.floor(Math.random() * 10000);
 
     // Map frontend fields into proper schema structure
-    const eventData = {
+    const newEvent = {
       eventId,
+
       card: {
-        title: req.body.title || "",
-        location: req.body.location || "",
-        date: req.body.date || "",
-        time: req.body.time || "",
-        image: req.body.heroImage || ""
+        title: req.body.card?.title || "",
+        location: req.body.card?.location || "",
+        date: req.body.card?.date || "",
+        time: req.body.card?.time || "",
+        image: req.body.card?.image || "",
+        peopleGoing: req.body.card?.peopleGoing || 0
       },
-      peopleGoing: 0,
       details: {
-        description: req.body.description || "",
-        tickets: req.body.tickets || []
-      },
-      prices: req.body.prices || []
+        bannerImage: req.body.details?.bannerImage || "",
+        description: req.body.details?.description || "",
+        venue: req.body.details?.venue || "",
+        prices: req.body.details?.prices || [],
+        cta: req.body.details?.cta || {}
+      }
     };
 
     // Create event in MongoDB
-    const event = await Event.create(eventData);
+    const event = await Event.create(newEvent);
 
     res.status(201).json({ success: true, event });
   } catch (error) {
