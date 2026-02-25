@@ -1,6 +1,6 @@
 import Event from "../models/Event.js";
 
-// Get all events
+// Get all events (for user)
 export const getEvents = async (req, res) => {
   try {
     const events = await Event.find().sort({ createdAt: -1 });
@@ -11,7 +11,7 @@ export const getEvents = async (req, res) => {
   }
 };
 
-// Get single event by ID
+// Get single event by ID (for user)
 export const getEventById = async (req, res) => {
   try {
     const event = await Event.findOne({ eventId: req.params.id });
@@ -23,10 +23,10 @@ export const getEventById = async (req, res) => {
   }
 };
 
-// Create event
+// Create event (admin)
 export const createEvent = async (req, res) => {
   try {
-    const eventId = Date.now().toString() + Math.floor(Math.random() * 10000);
+    const eventId = `evt_${Date.now()}`;
     const newEvent = {
       eventId,
       card: req.body.card,
@@ -40,7 +40,7 @@ export const createEvent = async (req, res) => {
   }
 };
 
-// Update event
+// Update event (admin)
 export const updateEvent = async (req, res) => {
   try {
     const event = await Event.findOneAndUpdate({ eventId: req.params.id }, req.body, { new: true });
@@ -52,7 +52,7 @@ export const updateEvent = async (req, res) => {
   }
 };
 
-// Delete event
+// Delete event (admin)
 export const deleteEvent = async (req, res) => {
   try {
     const event = await Event.findOneAndDelete({ eventId: req.params.id });

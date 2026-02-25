@@ -7,6 +7,9 @@ import eventRoutes from "./routes/event.routes.js";
 import adminEventRoutes from "./routes/admin.event.routes.js";
 import userEventRoutes from "./routes/user.event.routes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import adminAuthRoutes from "./routes/adminAuth.routes.js";
+import adminPaymentRoutes from "./routes/adminPayment.routes.js";
+import adminAnalyticsRoutes from "./routes/adminAnalytics.routes.js";
 
 dotenv.config();
 connectDB();
@@ -38,7 +41,16 @@ app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/admin/events", adminEventRoutes);
 app.use("/api/user/events", userEventRoutes);
+
+// Admin view of payments
+app.use("/api/admin/payments", adminPaymentRoutes);
+// Admin analytics
+app.use("/api/admin/analytics", adminAnalyticsRoutes);
+
 app.use("/api/payments", paymentRoutes);
+// Admin Login Route
+app.use("/api/admin", adminAuthRoutes);  
+     // for login
 // ----------------------------
 // Start server
 // ----------------------------
